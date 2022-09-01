@@ -6,18 +6,8 @@ spec:
   webhooks:
     - type: sh.keptn.event.evaluation.finished
       requests:
-        - "curl --request POST --data 'payload={   \"channel\" :
-          \"cloud-automation\",  \"username\" : \"keptn\",   \"blocks\":
-          [    {      \"type\" : \"section\",      \"text\" : {        \"type\":
-          \"mrkdwn\",        \"text\" : \"*Keptn Evaluation finished:*
-          {{.data.result}} ({{.data.evaluation.score}} /
-          100)\"      }    },    {      \"type\" : \"section\",      \"text\" :
-          {        \"type\": \"mrkdwn\",        \"text\" : \"*Project:*
-          {{.data.project}}\\n*Stage:* {{.data.stage}}\\n*Service:*
-          {{.data.service}}\\n*Details:*
-          {{.env.secret_slackwebhook_bridgeUrl}}/bridge/evaluation/{{.shkeptnco\
-          ntext}}\"      }    }  ]}'
-          https://hooks.slack.com/services/{{.env.secret_slackwebhook_token}}"
+        - >-
+          curl --request POST --data 'payload={   "channel" : "cloud-automation",  "username" : "keptn",   "blocks": [    {      "type" : "section",      "text" : {        "type": "mrkdwn",        "text" : "*Keptn Evaluation finished:* {{.data.result}} ({{.data.evaluation.score}} / 100)"      }    },    {      "type" : "section",      "text" : {        "type": "mrkdwn",        "text" : "*Project:* {{.data.project}}\n*Stage:* {{.data.stage}}\n*Service:* {{.data.service}}\n*Details:* {{.env.secret_slackwebhook_bridgeUrl}}/bridge/evaluation/{{.shkeptncontext}}"      }    }  ]}' https://hooks.slack.com/services/{{.env.secret_slackwebhook_token}}
       envFrom:
         - name: secret_slackwebhook_token
           secretRef:
@@ -29,3 +19,15 @@ spec:
             key: bridgeUrl
       subscriptionID: 3c4fca0e-5bf5-4bb3-a9f2-e7b48e4ed381
       sendFinished: false
+    - type: sh.keptn.event.evaluation.finished
+      requests:
+        - >-
+          curl --header 'Content-Type: application/json' --header 'Authorization: {{.env.secret_dynatracemetricingest_APITOKEN}}' --request POST --data '{    "type": "test",    "series": [        {            "timeseriesId": "custom:releasevalidationscore",            "dimensions": {                "Service": "{{.data.service}}",                "Stage": "{{.data.stage}}",                "Project": "{{.data.project}}",                "Version": "{{.data.labels.version}}",                "BuildId": "{{.data.labels.buildId}}",                "Result": "{{.data.evaluation.result}}",                "Score": {{.data.evaluation.score}},                "EvaluationTime": "{{.time}}"            },            "dataPoints": [                [ {{.data.labels.evaltime}}, {{.data.evaluation.score}} ]            ]        }    ]}' https://ibg73613.live.dynatrace.com/api/v1/entity/infrastructure/custom/custom:releasevalidationscore
+      envFrom:
+        - name: secret_dynatracemetricingest_APITOKEN
+          secretRef:
+            name: dynatracemetricingest
+            key: APITOKEN
+      subscriptionID: 599dc87d-e2fb-4776-9bf1-5dc49cafc548
+      sendFinished: false
+      sendStarted: false
