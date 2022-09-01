@@ -1,0 +1,18 @@
+apiVersion: webhookconfig.keptn.sh/v1alpha1
+kind: WebhookConfig
+metadata:
+  name: webhook-configuration
+spec:
+  webhooks:
+    - type: sh.keptn.event.evaluation.finished
+      requests:
+        - >-
+          curl --header 'Content-Type: application/json' --header 'Authorization: {{.env.secret_dynatracemetricingest_APITOKEN}}' --request POST --data '{    "type": "test",    "series": [        {            "timeseriesId": "custom:releasevalidationscore",            "dimensions": {                "Service": "{{.data.service}}",                "Stage": "{{.data.stage}}",                "Project": "{{.data.project}}",                "Version": "{{.data.labels.version}}",                "BuildId": "{{.data.labels.buildId}}",                "Result": "{{.data.evaluation.result}}",                "Score": {{.data.evaluation.score}},                "EvaluationTime": "{{.time}}"            },            "dataPoints": [                [ {{.data.labels.evaltime}}, {{.data.evaluation.score}} ]            ]        }    ]}' https://ibg73613.live.dynatrace.com/api/v1/entity/infrastructure/custom/custom:releasevalidationscore
+      envFrom:
+        - name: secret_dynatracemetricingest_APITOKEN
+          secretRef:
+            name: dynatracemetricingest
+            key: APITOKEN
+      subscriptionID: 599dc87d-e2fb-4776-9bf1-5dc49cafc548
+      sendFinished: false
+      sendStarted: false
