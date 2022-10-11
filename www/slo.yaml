@@ -79,14 +79,6 @@ objectives:
       warning: []
       weight: 1
       key_sli: false
-    - sli: app_sec_low
-      displayName: ""
-      pass:
-        - criteria:
-            - <=+2
-      warning: []
-      weight: 1
-      key_sli: false
 total_score:
     pass: 90%
     warning: 70%
