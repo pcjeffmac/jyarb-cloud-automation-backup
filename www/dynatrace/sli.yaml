@@ -1,7 +1,6 @@
 spec_version: 0.1.4
 indicators:
     app_sec_low: ""
-    app_sec_medium: ""
     error_rate: entitySelector=type(SERVICE),tag("keptn_service:www"),tag("keptn_managed"),mzId(-5502479898842519396)&metricSelector=builtin:service.errors.server.rate:splitBy():avg:names
     proc_count: entitySelector=type(PROCESS_GROUP_INSTANCE),tag("managed:www"),mzId(-5502479898842519396)&metricSelector=builtin:tech.generic.processCount:splitBy():avg:names
     process_cpu: entitySelector=type(PROCESS_GROUP_INSTANCE),tag("managed:www"),mzId(-5502479898842519396)&metricSelector=builtin:tech.generic.cpu.usage:splitBy():avg:names
