@@ -5,8 +5,8 @@ indicators:
     proc_count: entitySelector=type(PROCESS_GROUP_INSTANCE),mzId(-5502479898842519396)&metricSelector=builtin:tech.generic.processCount:splitBy():avg:names
     process_cpu: entitySelector=type(PROCESS_GROUP_INSTANCE),mzId(-5502479898842519396)&metricSelector=builtin:tech.generic.cpu.usage:splitBy():avg:names
     process_memory: MV2;Byte;entitySelector=type(PROCESS_GROUP_INSTANCE),mzId(-5502479898842519396)&metricSelector=builtin:tech.generic.mem.workingSetSize:splitBy():avg:names
-    response_time_p50: MV2;MicroSecond;entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(50.000000):names
-    response_time_p90: MV2;MicroSecond;entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(90.000000):names
-    response_time_p95: MV2;MicroSecond;entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(95.000000):names
+    response_time_p50: entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(50.000000):names
+    response_time_p90: entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(90.000000):names
+    response_time_p95: entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.response.time:splitBy():percentile(95.000000):names
     svc_tp_min: entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.requestCount.total:splitBy():value:names
     svc2svc_calls: entitySelector=type(SERVICE),tag("keptn_service:www"),mzId(-5502479898842519396)&metricSelector=builtin:service.nonDbChildCallCount:splitBy():value:names
