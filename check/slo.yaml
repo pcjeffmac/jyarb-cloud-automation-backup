@@ -6,18 +6,12 @@ comparison:
     number_of_comparison_results: 1
     aggregate_function: avg
 objectives:
-    - sli: proc_count
-      displayName: Worker Process Count (Avg)
-      pass: []
-      warning: []
-      weight: 1
-      key_sli: false
     - sli: response_time_p95
       displayName: Response time (P95)
       pass:
         - criteria:
             - <+50%
-            - <1000
+            - <1
       warning: []
       weight: 1
       key_sli: false
@@ -26,7 +20,7 @@ objectives:
       pass:
         - criteria:
             - <+50%
-            - <550
+            - <2
       warning: []
       weight: 1
       key_sli: false
@@ -35,24 +29,8 @@ objectives:
       pass:
         - criteria:
             - <+50%
-            - <500
+            - <2
       warning: []
-      weight: 1
-      key_sli: false
-    - sli: process_memory
-      displayName: Process Memory
-      pass: []
-      warning: []
-      weight: 1
-      key_sli: false
-    - sli: process_cpu
-      displayName: Process CPU
-      pass:
-        - criteria:
-            - <20
-      warning:
-        - criteria:
-            - <50
       weight: 1
       key_sli: false
     - sli: error_rate
@@ -75,6 +53,28 @@ objectives:
       key_sli: false
     - sli: svc2svc_calls
       displayName: Calls to backend services (per min)
+      pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: process_cpu
+      displayName: Process CPU
+      pass:
+        - criteria:
+            - <20
+      warning:
+        - criteria:
+            - <50
+      weight: 1
+      key_sli: false
+    - sli: process_memory
+      displayName: Process Memory
+      pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: proc_count
+      displayName: Worker Process Count (Avg)
       pass: []
       warning: []
       weight: 1
