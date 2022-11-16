@@ -10,10 +10,10 @@ objectives:
       displayName: ""
       pass:
         - criteria:
-            - <600
+            - <830000
       warning:
         - criteria:
-            - <=800
+            - <=840000
       weight: 1
       key_sli: false
     - sli: error_rate
