@@ -17,7 +17,7 @@ objectives:
       pass:
         - criteria:
             - <+50%
-            - <2000
+            - <1100000
       warning: []
       weight: 1
       key_sli: false
