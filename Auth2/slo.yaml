@@ -7,13 +7,13 @@ comparison:
     aggregate_function: avg
 objectives:
     - sli: proc_count
-      displayName: ""
+      displayName: Worker Process Count (Avg)
       pass: []
       warning: []
       weight: 1
       key_sli: false
     - sli: response_time_p95
-      displayName: ""
+      displayName: Response time (P95)
       pass:
         - criteria:
             - <+50%
@@ -22,7 +22,7 @@ objectives:
       weight: 1
       key_sli: false
     - sli: response_time_p90
-      displayName: ""
+      displayName: Response time (P90)
       pass:
         - criteria:
             - <+50%
@@ -31,7 +31,7 @@ objectives:
       weight: 1
       key_sli: false
     - sli: response_time_p50
-      displayName: ""
+      displayName: Response time (P50)
       pass:
         - criteria:
             - <+50%
@@ -40,13 +40,13 @@ objectives:
       weight: 1
       key_sli: false
     - sli: process_memory
-      displayName: ""
+      displayName: Process Memory
       pass: []
       warning: []
       weight: 1
       key_sli: false
     - sli: process_cpu
-      displayName: ""
+      displayName: Process CPU
       pass:
         - criteria:
             - <20
@@ -56,7 +56,7 @@ objectives:
       weight: 1
       key_sli: false
     - sli: error_rate
-      displayName: ""
+      displayName: Failure Rate (Avg)
       pass:
         - criteria:
             - <=1
@@ -66,7 +66,7 @@ objectives:
       weight: 2
       key_sli: false
     - sli: svc_tp_min
-      displayName: ""
+      displayName: Throughput (per min)
       pass:
         - criteria:
             - '>200'
@@ -74,7 +74,7 @@ objectives:
       weight: 1
       key_sli: false
     - sli: svc2svc_calls
-      displayName: ""
+      displayName: Calls to backend services (per min)
       pass: []
       warning: []
       weight: 1
