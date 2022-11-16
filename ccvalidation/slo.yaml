@@ -12,15 +12,6 @@ objectives:
       warning: []
       weight: 1
       key_sli: false
-    - sli: response_time_p95
-      displayName: Response time (P95)
-      pass:
-        - criteria:
-            - <+50%
-            - <1990000
-      warning: []
-      weight: 1
-      key_sli: false
     - sli: response_time_p90
       displayName: Response time (P90)
       pass:
@@ -76,6 +67,15 @@ objectives:
     - sli: svc2svc_calls
       displayName: Calls to backend services (per min)
       pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: response_time_p95
+      displayName: Response time (P95)
+      pass:
+        - criteria:
+            - <+50%
+            - <1990000
       warning: []
       weight: 1
       key_sli: false
