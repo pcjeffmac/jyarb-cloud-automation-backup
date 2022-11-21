@@ -1,4 +1,4 @@
-spec_version: "1.0"
+spec_version: ""
 filter: {}
 comparison:
     compare_with: single_result
@@ -6,30 +6,87 @@ comparison:
     number_of_comparison_results: 1
     aggregate_function: avg
 objectives:
-    - sli: response_time_p95
+    - sli: problems
       displayName: ""
       pass:
         - criteria:
-            - <600
-      warning:
+            - <=0
+      warning: []
+      weight: 1
+      key_sli: true
+    - sli: response_time_p95
+      displayName: Response time (P95)
+      pass:
         - criteria:
-            - <=800
+            - <+50%
+            - <3.0
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: response_time_p90
+      displayName: Response time (P90)
+      pass:
+        - criteria:
+            - <+50%
+            - <5.0
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: response_time_p50
+      displayName: Response time (P50)
+      pass:
+        - criteria:
+            - <+50%
+            - <5.0
+      warning: []
       weight: 1
       key_sli: false
     - sli: error_rate
-      displayName: ""
+      displayName: Failure Rate (Avg)
       pass:
         - criteria:
-            - <5
+            - <=1
+      warning:
+        - criteria:
+            - <=2
+      weight: 2
+      key_sli: false
+    - sli: svc_tp_min
+      displayName: Throughput (per min)
+      pass:
+        - criteria:
+            - '>200'
       warning: []
       weight: 1
       key_sli: false
-    - sli: throughput
-      displayName: ""
+    - sli: svc2svc_calls
+      displayName: Calls to backend services (per min)
       pass: []
       warning: []
-      weight: 0
+      weight: 1
+      key_sli: false
+    - sli: process_cpu
+      displayName: Process CPU
+      pass:
+        - criteria:
+            - <20
+      warning:
+        - criteria:
+            - <50
+      weight: 1
+      key_sli: false
+    - sli: process_memory
+      displayName: Process Memory
+      pass: []
+      warning: []
+      weight: 1
+      key_sli: false
+    - sli: proc_count
+      displayName: Worker Process Count (Avg)
+      pass: []
+      warning: []
+      weight: 1
       key_sli: false
 total_score:
     pass: 90%
-    warning: 75%
+    warning: 70%
