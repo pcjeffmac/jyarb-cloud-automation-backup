@@ -81,12 +81,6 @@ objectives:
       warning: []
       weight: 1
       key_sli: false
-    - sli: proc_count
-      displayName: Worker Process Count (Avg)
-      pass: []
-      warning: []
-      weight: 1
-      key_sli: false
 total_score:
     pass: 90%
     warning: 70%
